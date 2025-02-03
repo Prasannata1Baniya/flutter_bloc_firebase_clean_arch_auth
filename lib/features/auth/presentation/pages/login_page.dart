@@ -1,15 +1,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_firebase/features/auth/presentation/pages/auth_page.dart';
-
+//import 'package:flutter_bloc_firebase/features/auth/presentation/pages/auth_page.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
 import '../widgets/my_text_field.dart';
 import 'home_page.dart';
 
 class LoginPage extends StatelessWidget {
-   LoginPage({super.key});
+  final void Function()? onTap;
+   LoginPage({super.key, required this.onTap});
 
   final TextEditingController emailController=TextEditingController();
    final TextEditingController passwordController=TextEditingController();
@@ -47,16 +47,20 @@ class LoginPage extends StatelessWidget {
             },
                 child: const Text("Login")
             ),
-            const Text("Not a member"),
-            GestureDetector(
-              onTap: (){
-                Navigator.push(
+            Row(
+              children: [
+                const Text("Not a member"),
+                GestureDetector(
+                    onTap: onTap,
+                    /* Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const AuthPage(isLogin: false)),
-                );
-              },
-                child:const  Text("Register")),
+                );*/
+                    child:const  Text("Register")
+                ),
 
+              ],
+            ),
           ],
         ),
       ),

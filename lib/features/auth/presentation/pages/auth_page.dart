@@ -4,8 +4,8 @@ import 'package:flutter_bloc_firebase/features/auth/presentation/pages/login_pag
 import 'package:flutter_bloc_firebase/features/auth/presentation/pages/register_page.dart';
 
 class AuthPage extends StatefulWidget {
-  final bool isLogin;
-  const AuthPage({super.key, required this.isLogin});
+  //final bool isLogin;
+  const AuthPage({super.key});
 
   @override
   State<AuthPage> createState() => _AuthPageState();
@@ -22,10 +22,10 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     if(isLogin){
-      return LoginPage();
+      return LoginPage(onTap: togglePage,);
     }
     else if(!isLogin){
-      return RegisterPage();
+      return RegisterPage(onTap: togglePage,);
     }
     return const Text("No pages");
   }

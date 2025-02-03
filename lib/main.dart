@@ -42,7 +42,9 @@ class MyApp extends StatelessWidget {
         return const HomePage();
       }
       else if(state is UnAuthenticatedState){
-        return const AuthPage(isLogin: true);
+        //return const AuthPage(isLogin: true);
+        return const AuthPage();
+
       }
     else{
       return const Center(child:Text("Failed"));
