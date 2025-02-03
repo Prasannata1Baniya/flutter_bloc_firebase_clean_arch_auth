@@ -5,14 +5,14 @@ import '../../domain/repos/auth_repo.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState>{
-  final AuthRepo _authRepo;
+  final AuthRepo authRepo;
   UserModel? _currentUser;
-  AuthCubit(this._authRepo):super(AuthInitialState());
+  AuthCubit({required this.authRepo}):super(AuthInitialState());
 
   Future<void> login(String email,String password) async{
     emit(LoadingState());
     try{
-      final user=await _authRepo.login(email, password);
+      final user=await authRepo.login(email, password);
       if(user!=null){
         emit(AuthenticatedState(user));
       }
@@ -28,7 +28,7 @@ class AuthCubit extends Cubit<AuthState>{
   Future<void> register(String name,String email,String password) async{
       emit(LoadingState());
       try{
-       final user=await _authRepo.register(name, email, password) ;
+       final user=await authRepo.register(name, email, password) ;
        if(user!=null){
          emit(AuthenticatedState(user));
        }
@@ -45,7 +45,7 @@ class AuthCubit extends Cubit<AuthState>{
 
   Future<void> checkCurrentUser() async{
     try{
-      final UserModel? user=await _authRepo.checkCurrentUser();
+      final UserModel? user=await authRepo.checkCurrentUser();
       if(user!=null){
         _currentUser=user;
         emit(AuthenticatedState(user));
@@ -60,7 +60,7 @@ class AuthCubit extends Cubit<AuthState>{
 
   Future<void> logOut() async{
     try{
-      await _authRepo.logOut();
+      await authRepo.logOut();
 
     }catch(e){
       throw Exception(e.toString());
