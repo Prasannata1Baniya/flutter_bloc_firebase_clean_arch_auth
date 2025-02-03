@@ -7,13 +7,37 @@ import '../cubit/auth_state.dart';
 import '../widgets/my_text_field.dart';
 import 'home_page.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
 
-   RegisterPage({super.key, required this.onTap});
-   final TextEditingController nameController=TextEditingController();
-   final TextEditingController emailController=TextEditingController();
-  final TextEditingController passwordController=TextEditingController();
+   const RegisterPage({super.key, required this.onTap});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+   late TextEditingController nameController=TextEditingController();
+
+  late TextEditingController emailController=TextEditingController();
+
+  late TextEditingController passwordController=TextEditingController();
+   @override
+   void initState() {
+     super.initState();
+     nameController = TextEditingController();
+     emailController = TextEditingController();
+     passwordController = TextEditingController();
+   }
+
+   @override
+   void dispose() {
+     nameController.dispose();
+     emailController.dispose();
+     passwordController.dispose();
+     super.dispose();
+   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,7 +107,7 @@ class RegisterPage extends StatelessWidget {
                 children: [
                   const Text("Already a member"),
                   GestureDetector(
-                      onTap: onTap,
+                      onTap: widget.onTap,
                       /* Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const AuthPage(isLogin: true)),

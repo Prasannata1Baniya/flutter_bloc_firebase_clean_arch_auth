@@ -58,8 +58,8 @@ class AuthRepoImpl implements AuthRepo{
     if(user!=null) {
       return UserModel.fromJson({
         'uid': user.uid,
-        'name': user.displayName,
-        'email': user.email,
+        'name': user.displayName??'',
+        'email': user.email??'',
       });
     }
     return null;

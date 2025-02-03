@@ -8,7 +8,7 @@ class AuthInitialState extends AuthState{}
 class LoadingState extends AuthState{}
 
 class AuthenticatedState extends AuthState{
-  UserModel? userModel;
+ final UserModel? userModel;
   AuthenticatedState(this.userModel);
 }
 

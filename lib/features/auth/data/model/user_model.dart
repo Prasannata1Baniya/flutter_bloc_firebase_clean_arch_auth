@@ -9,17 +9,17 @@ class UserModel{
   Map<String,dynamic> toJson(){
       return{
       'uid':uid,
-        'name':name,
-        'email':email,
+      'name':name ,
+      'email':email,
       };
   }
 
   //json to dart
   factory UserModel.fromJson(Map<String,dynamic> json){
     return UserModel(
-        uid: json['uid'],
+        uid: json['uid'] ??'',
         name: json['name'] ??'',
-        email: json['email'],
+        email: json['email']??'',
     );
   }
 

@@ -21,7 +21,8 @@ class AuthCubit extends Cubit<AuthState>{
       }
 
     }catch(e){
-      throw Exception(e.toString());
+      emit(AuthErrorState(e.toString()));
+
     }
   }
 
@@ -36,14 +37,15 @@ class AuthCubit extends Cubit<AuthState>{
          emit(AuthErrorState('User not created'));
        }
      }catch(e){
-        throw Exception(e.toString());
-     }
+        emit(AuthErrorState(e.toString()));
+      }
   }
 
   //get currentUser
   UserModel? get currentUser=> _currentUser;
 
   Future<void> checkCurrentUser() async{
+    emit(LoadingState());
     try{
       final UserModel? user=await authRepo.checkCurrentUser();
       if(user!=null){
@@ -54,16 +56,17 @@ class AuthCubit extends Cubit<AuthState>{
       }
     }
     catch(e){
-      throw Exception(e.toString());
+      emit(AuthErrorState(e.toString()));
     }
   }
 
   Future<void> logOut() async{
     try{
       await authRepo.logOut();
-
+      emit(UnAuthenticatedState());
     }catch(e){
-      throw Exception(e.toString());
+      emit(AuthErrorState(e.toString()));
+      //throw Exception(e.toString());
     }
   }
 

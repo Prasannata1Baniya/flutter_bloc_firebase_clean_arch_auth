@@ -22,7 +22,7 @@ void main() async{
     MultiBlocProvider(
         providers: [
           BlocProvider(create: (_)=>AuthCubit(authRepo: authRepo)..checkCurrentUser()),
-        ], child: const MyApp()
+        ], child: const MyApp(),
     ),
       );
 }
@@ -33,7 +33,37 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MaterialApp(
+      home: BlocConsumer<AuthCubit, AuthState>(
+          builder: (context, state) {
+            if (state is AuthenticatedState) {
+              return const HomePage();
+            }
+            if (state is UnAuthenticatedState) {
+              return const AuthPage();
+            }
+            else {
+              return const Scaffold(
+                  body: CircularProgressIndicator()
+              );
+            }
+          },
+          listener: (context, state) {
+            if (state is AuthErrorState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.error)));
+            }
+          }
+      ),
+    );
+
+
+
+
+
+
+
+      /*MaterialApp(
       debugShowCheckedModeBanner: false,
      home:  BlocConsumer<AuthCubit,AuthState>(
          builder: (context,state){
@@ -58,6 +88,6 @@ class MyApp extends StatelessWidget {
                  SnackBar(content: Text(state.error)));
            }
          }),
-    );
+    );*/
   }
 }
