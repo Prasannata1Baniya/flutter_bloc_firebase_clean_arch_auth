@@ -14,7 +14,8 @@ class HomePage extends StatelessWidget {
     context.read<AuthCubit>().checkCurrentUser();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title: const Text("Home Page",style: TextStyle(color: Colors.white,fontSize: 30),),
+        backgroundColor: Colors.black,
         actions: [
           IconButton(onPressed: (){
             context.read<AuthCubit>().logOut();
@@ -30,7 +31,8 @@ class HomePage extends StatelessWidget {
               final profile=context.read<AuthCubit>().currentUser;
               return Column(
                 children: [
-                  const Icon(Icons.person),
+                  const Icon(Icons.person,size: 70,),
+                  const SizedBox(height:30),
                   const Text("Your Name:"),
                   Text(profile?.name ??'No name available'),
                   const Text("Your Email:"),

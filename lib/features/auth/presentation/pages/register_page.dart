@@ -104,18 +104,19 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: const Text("Login")),*/
               const SizedBox(height:10),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("Already a member"),
+                  const SizedBox(width:20),
                   GestureDetector(
                       onTap: widget.onTap,
                       /* Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const AuthPage(isLogin: true)),
                   );*/
-                      child:const Text("Login")),
+                      child:const Text("Login",style: TextStyle(color:Colors.blue),)),
                 ],
               ),
-
             ],
           ),
         ),

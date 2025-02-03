@@ -1,18 +1,36 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:flutter_bloc_firebase/features/auth/presentation/pages/auth_page.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
 import '../widgets/my_text_field.dart';
 import 'home_page.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   final void Function()? onTap;
-   LoginPage({super.key, required this.onTap});
+   const LoginPage({super.key, required this.onTap});
 
-  final TextEditingController emailController=TextEditingController();
-   final TextEditingController passwordController=TextEditingController();
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  late TextEditingController emailController=TextEditingController();
+   late TextEditingController passwordController=TextEditingController();
+
+   @override
+  void initState() {
+    super.initState();
+    emailController=TextEditingController();
+   passwordController=TextEditingController();
+    // passwordController.text;
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,17 +89,18 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("Not a member"),
+                  const SizedBox(width:20),
                   GestureDetector(
-                      onTap: onTap,
+                      onTap: widget.onTap,
                       /* Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const AuthPage(isLogin: false)),
                   );*/
-                      child:const  Text("Register")
+                      child:const  Text("Register",style: TextStyle(color:Colors.blue),)
                   ),
-
                 ],
               ),
             ],

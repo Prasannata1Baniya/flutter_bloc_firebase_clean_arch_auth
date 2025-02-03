@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         return windows;
       case TargetPlatform.linux:
@@ -71,4 +65,23 @@ class DefaultFirebaseOptions {
     authDomain: 'fir-bloc-b4e53.firebaseapp.com',
     storageBucket: 'fir-bloc-b4e53.firebasestorage.app',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAeZ0MMis0gD3fixWHD1U9fR32hmYjefXA',
+    appId: '1:1091330807762:web:6ba705d8123c56718b5a0b',
+    messagingSenderId: '1091330807762',
+    projectId: 'fir-bloc-b4e53',
+    authDomain: 'fir-bloc-b4e53.firebaseapp.com',
+    storageBucket: 'fir-bloc-b4e53.firebasestorage.app',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCmMbRprnN9HH_PS0NYUaKhZN8cz5-F31Y',
+    appId: '1:1091330807762:ios:75fe75e2d6d569ef8b5a0b',
+    messagingSenderId: '1091330807762',
+    projectId: 'fir-bloc-b4e53',
+    storageBucket: 'fir-bloc-b4e53.firebasestorage.app',
+    iosBundleId: 'com.prasannataBaniya.flutterBlocFirebase',
+  );
+
 }
