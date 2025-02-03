@@ -32,36 +32,68 @@ class RegisterPage extends StatelessWidget {
             );
           }
         },
-        child: Column(
-          children: [
-            const Icon(Icons.login),
-            MyTextField(controller: nameController,
-                obscureText: false, hText: 'name'),
-            MyTextField(controller: emailController , obscureText: false, hText: 'email',),
-            MyTextField(controller: passwordController,
-                obscureText: true, hText: 'password'),
-            ElevatedButton(
-                onPressed: (){
-                  context.read<AuthCubit>().login(
-                      emailController.text.trim(),
-                      passwordController.text.trim());
-                },
-                child: const Text("Login")
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              const Icon(Icons.login),
+              const SizedBox(height:30),
+              MyTextField(controller: nameController,
+                  obscureText: false, hText: 'name'),
+              const SizedBox(height:15),
+              MyTextField(controller: emailController , obscureText: false, hText: 'email',),
+              const SizedBox(height:15),
+              MyTextField(controller: passwordController,
+                  obscureText: true, hText: 'password'),
+              const SizedBox(height:30),
+          GestureDetector(
+            onTap: (){
+              context.read<AuthCubit>().register(
+                  nameController.text.trim(),
+                  emailController.text.trim(),
+                  passwordController.text.trim());
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.black,
+              ),
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              width: double.infinity,
+              child: const Text(
+                "Register",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
-            Row(
-              children: [
-                const Text("Already a member"),
-                GestureDetector(
-                    onTap: onTap,
-                    /* Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AuthPage(isLogin: true)),
-                );*/
-                    child:const Text("Login")),
-              ],
-            ),
+          ),
+              /*ElevatedButton(
+                  onPressed: (){
+                    context.read<AuthCubit>().login(
+                        emailController.text.trim(),
+                        passwordController.text.trim());
+                  },
+                  child: const Text("Login")),*/
+              const SizedBox(height:10),
+              Row(
+                children: [
+                  const Text("Already a member"),
+                  GestureDetector(
+                      onTap: onTap,
+                      /* Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const AuthPage(isLogin: true)),
+                  );*/
+                      child:const Text("Login")),
+                ],
+              ),
 
-          ],
+            ],
+          ),
         ),
       ),
     );

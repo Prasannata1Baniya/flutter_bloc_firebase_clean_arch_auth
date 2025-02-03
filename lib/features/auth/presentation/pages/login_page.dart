@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 //import 'package:flutter_bloc_firebase/features/auth/presentation/pages/auth_page.dart';
 import '../cubit/auth_cubit.dart';
@@ -33,35 +34,59 @@ class LoginPage extends StatelessWidget {
            );
         }
       },
-        child: Column(
-          children: [
-            const Icon(Icons.login),
-           MyTextField(controller: emailController , obscureText: false, hText: 'email',),
-            MyTextField(controller: passwordController,
-                obscureText: true, hText: 'password'),
-            ElevatedButton(
-                onPressed: (){
-              context.read<AuthCubit>().login(
-                  emailController.text.trim(),
-                  passwordController.text.trim());
-            },
-                child: const Text("Login")
-            ),
-            Row(
-              children: [
-                const Text("Not a member"),
-                GestureDetector(
-                    onTap: onTap,
-                    /* Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AuthPage(isLogin: false)),
-                );*/
-                    child:const  Text("Register")
-                ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              const Icon(Icons.login),
+              const SizedBox(height:30),
 
-              ],
-            ),
-          ],
+             MyTextField(controller: emailController , obscureText: false, hText: 'email',),
+              const SizedBox(height:15),
+              MyTextField(controller: passwordController,
+                  obscureText: true, hText: 'password'),
+              const SizedBox(height:30),
+
+              GestureDetector(
+                onTap: (){
+                  context.read<AuthCubit>().login(
+                      emailController.text.trim(),
+                      passwordController.text.trim());
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.black,
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  width: double.infinity,
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  const Text("Not a member"),
+                  GestureDetector(
+                      onTap: onTap,
+                      /* Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const AuthPage(isLogin: false)),
+                  );*/
+                      child:const  Text("Register")
+                  ),
+
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -33,28 +33,31 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit,AuthState>(
-        builder: (context,state){
-      if(state is LoadingState){
-        return const Center(child: CircularProgressIndicator());
-      }
-       if(state is AuthenticatedState){
-        return const HomePage();
-      }
-       if(state is UnAuthenticatedState){
-        //return const AuthPage(isLogin: true);
-        return const AuthPage();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+     home:  BlocConsumer<AuthCubit,AuthState>(
+         builder: (context,state){
+           if(state is LoadingState){
+             return const Center(child: CircularProgressIndicator());
+           }
+           if(state is AuthenticatedState){
+             return const HomePage();
+           }
+           if(state is UnAuthenticatedState){
+             //return const AuthPage(isLogin: true);
+             return const AuthPage();
 
-      }
-    else{
-      return const Center(child:Text("Failed"));
-      }
-    },
-        listener: (context,state){
-          if(state is AuthErrorState){
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.error)));
-          }
-        });
+           }
+           else{
+             return const Center(child:Text("Failed"));
+           }
+         },
+         listener: (context,state){
+           if(state is AuthErrorState){
+             ScaffoldMessenger.of(context).showSnackBar(
+                 SnackBar(content: Text(state.error)));
+           }
+         }),
+    );
   }
 }
