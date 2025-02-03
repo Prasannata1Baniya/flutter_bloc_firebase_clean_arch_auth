@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1091330807762",
+    "project_id": "fir-bloc-b4e53",
+    "storage_bucket": "fir-bloc-b4e53.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091330807762:android:dca02ab558c6776e8b5a0b",
+        "android_client_info": {
+          "package_name": "com.prasannataBaniya.flutter_bloc_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGCYnDQX1MXIYxT09_SDTrK2eZMPOQNig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
