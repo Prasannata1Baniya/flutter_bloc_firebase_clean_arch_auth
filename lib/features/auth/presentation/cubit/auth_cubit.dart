@@ -43,9 +43,9 @@ class AuthCubit extends Cubit<AuthState>{
   //get currentUser
   UserModel? get currentUser=> _currentUser;
 
-  Future<void> getCurrentUser() async{
+  Future<void> checkCurrentUser() async{
     try{
-      final UserModel? user=await _authRepo.getCurrentUser();
+      final UserModel? user=await _authRepo.checkCurrentUser();
       if(user!=null){
         _currentUser=user;
         emit(AuthenticatedState(user));

@@ -53,7 +53,7 @@ class AuthRepoImpl implements AuthRepo{
 }
 
   @override
-  Future<UserModel?> getCurrentUser() async{
+  Future<UserModel?> checkCurrentUser() async{
     User? user= _firebaseAuth.currentUser;
     if(user!=null) {
       return UserModel.fromJson({

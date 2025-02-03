@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<AuthCubit>().getCurrentUser();
+    context.read<AuthCubit>().checkCurrentUser();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home Page"),

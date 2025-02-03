@@ -21,7 +21,7 @@ void main() async{
   runApp(
     MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_)=>AuthCubit(authRepo)),
+          BlocProvider(create: (_)=>AuthCubit(authRepo)..checkCurrentUser()),
         ], child: const MyApp()
     ),
       );
