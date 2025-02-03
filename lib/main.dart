@@ -38,10 +38,10 @@ class MyApp extends StatelessWidget {
       if(state is LoadingState){
         return const Center(child: CircularProgressIndicator());
       }
-      else if(state is AuthenticatedState){
+       if(state is AuthenticatedState){
         return const HomePage();
       }
-      else if(state is UnAuthenticatedState){
+       if(state is UnAuthenticatedState){
         //return const AuthPage(isLogin: true);
         return const AuthPage();
 
