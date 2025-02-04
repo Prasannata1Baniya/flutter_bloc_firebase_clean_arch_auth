@@ -66,7 +66,7 @@ class AuthRepoImpl implements AuthRepo{
     if(user!=null) {
       DocumentSnapshot doc=await _firestore.collection('users').doc(user.uid).get();
       if(doc.exists){
-         UserModel.fromJson(doc.data() as Map<String,dynamic>);
+         return UserModel.fromJson(doc.data() as Map<String,dynamic>);
       }else {
         return UserModel.fromJson({
           'uid': user.uid,
