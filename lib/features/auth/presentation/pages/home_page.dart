@@ -6,12 +6,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  @override
+  void initState() {
+    super.initState();
     context.read<AuthCubit>().checkCurrentUser();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    //context.read<AuthCubit>().checkCurrentUser();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home Page",style: TextStyle(color: Colors.white,fontSize: 30),),
