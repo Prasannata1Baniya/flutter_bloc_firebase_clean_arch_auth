@@ -17,11 +17,19 @@ class AuthRepoImpl implements AuthRepo{
           password: password,
       );
       if(userCredential.user !=null){
-        return UserModel(
+        DocumentSnapshot doc=await _firestore.collection('users')
+            .doc(userCredential.user!.uid).get();
+        if(doc.exists){
+          return UserModel.fromJson(doc.data() as Map<String,dynamic>);
+        }
+        else {
+          // If user doesn't exist in Firestore, return a new UserModel with Firebase data
+          return UserModel(
             uid: userCredential.user!.uid,
             name: userCredential.user!.displayName ?? '',
-            email: email ,
-        );
+            email: email,
+          );
+        }
       }
     }catch(e){
       debugPrint(e.toString());
@@ -56,11 +64,16 @@ class AuthRepoImpl implements AuthRepo{
   Future<UserModel?> checkCurrentUser() async{
     User? user= _firebaseAuth.currentUser;
     if(user!=null) {
-      return UserModel.fromJson({
-        'uid': user.uid,
-        'name': user.displayName??'',
-        'email': user.email??'',
-      });
+      DocumentSnapshot doc=await _firestore.collection('users').doc(user.uid).get();
+      if(doc.exists){
+         UserModel.fromJson(doc.data() as Map<String,dynamic>);
+      }else {
+        return UserModel.fromJson({
+          'uid': user.uid,
+          'name': user.displayName ?? '',
+          'email': user.email ?? '',
+        });
+      }
     }
     return null;
   }

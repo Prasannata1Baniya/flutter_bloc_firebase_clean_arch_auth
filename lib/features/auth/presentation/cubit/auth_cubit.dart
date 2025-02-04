@@ -14,6 +14,7 @@ class AuthCubit extends Cubit<AuthState>{
     try{
       final user=await authRepo.login(email, password);
       if(user!=null){
+        _currentUser=user;
         emit(AuthenticatedState(user));
       }
       else{
@@ -30,6 +31,7 @@ class AuthCubit extends Cubit<AuthState>{
       emit(LoadingState());
       try{
        final user=await authRepo.register(name, email, password) ;
+       _currentUser=user;
        if(user!=null){
          emit(AuthenticatedState(user));
        }
