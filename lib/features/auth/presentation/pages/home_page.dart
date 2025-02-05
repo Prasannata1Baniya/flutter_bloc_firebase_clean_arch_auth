@@ -15,11 +15,12 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home Page",style: TextStyle(color: Colors.white,fontSize: 30),),
+        centerTitle: true,
         backgroundColor: Colors.black,
         actions: [
           IconButton(onPressed: (){
             context.read<AuthCubit>().logOut();
-          }, icon: const Icon(Icons.logout)),
+          }, icon: const Icon(Icons.logout,color: Colors.white,size:25)),
         ],
       ),
       body: BlocBuilder<AuthCubit,AuthState>(
@@ -60,6 +61,7 @@ class HomePage extends StatelessWidget {
                             Text(profile?.name ??'No name available',
                                 style:const TextStyle(fontSize: 30,fontWeight:FontWeight.normal)
                             ),
+                            const SizedBox(height:15),
                             const Text("Your Email:",
                                 style: TextStyle(fontSize: 35,fontWeight:FontWeight.bold)
                             ),

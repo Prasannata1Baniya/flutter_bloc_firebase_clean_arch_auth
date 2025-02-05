@@ -31,8 +31,11 @@ class AuthRepoImpl implements AuthRepo{
           );
         }
       }
-    }catch(e){
+    }on FirebaseAuthException {
+      rethrow; // Propagate the error to the Cubit
+    } catch(e){
       debugPrint(e.toString());
+      throw Exception('An unexpected error occurred');
     }
     return null;
   }
@@ -54,8 +57,12 @@ class AuthRepoImpl implements AuthRepo{
         await _firestore.collection("users").doc(user.uid).set(user.toJson());
         return user;
       }
-    }catch(e){
+    }on FirebaseAuthException {
+      rethrow; // Propagate the error to the Cubit
+    }
+    catch(e){
       debugPrint(e.toString());
+      throw Exception('An unexpected error occurred');
     }
     return null;
 }
