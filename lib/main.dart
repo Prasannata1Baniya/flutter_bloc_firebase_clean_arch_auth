@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
      home:  BlocConsumer<AuthCubit,AuthState>(
+        // buildWhen: (previous, current) => current is! AuthErrorState,
          builder: (context,state){
            if(state is LoadingState){
              return const Center(child: CircularProgressIndicator());
@@ -59,29 +60,5 @@ class MyApp extends StatelessWidget {
            }
          }),
     );
-
-    /*MaterialApp(
-      home: BlocConsumer<AuthCubit, AuthState>(
-          builder: (context, state) {
-            if (state is AuthenticatedState) {
-              return const HomePage();
-            }
-            if (state is UnAuthenticatedState) {
-              return const AuthPage();
-            }
-            else {
-              return const Scaffold(
-                  body: CircularProgressIndicator()
-              );
-            }
-          },
-          listener: (context, state) {
-            if (state is AuthErrorState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.error)));
-            }
-          }
-      ),
-    );*/
   }
 }
